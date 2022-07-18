@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useBasepath from "./../hooks/useBasepath";
 
 type TechnologyCardProps = {
   name: string;
@@ -11,8 +12,9 @@ type TechnologyCardProps = {
 
 const Home: NextPage = () => {
   const router =useRouter();
+  const basePath=useBasepath()
   const handleClick = () => {
-    router.push("/test","/base/test")
+    router.push("/test",`${basePath}/test`)
   }
   return (
     <>
@@ -23,7 +25,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="container mx-auto flex flex-col items-center justify-center h-screen p-4">
-        <Link href="/test" as="/base/test">Link test</Link>
+        <Link href="/test" as={`${basePath}/test`}>Link test</Link>
         <button onClick={handleClick}>Btton test</button>
       </main>
     </>
